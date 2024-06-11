@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Group Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .main-content {
+            padding: 2rem;
+        }
+        .group-form, .groups-list {
+            margin-bottom: 2rem;
+        }
+        .group {
+            border: 1px solid #ccc;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .group h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>Discussion Group Dashboard</h1>
+    </div>
+
+    <div class="main-content">
+        <div class="group-form">
+            <h2>Create a New Discussion Group</h2>
+            <form id="create-group-form">
+                <label for="group-name">Group Name:</label>
+                <input type="text" id="group-name" name="group-name" required>
+                <label for="group-description">Description:</label>
+                <input type="text" id="group-description" name="group-description" required>
+                <button type="submit">Create Group</button>
+            </form>
+        </div>
+
+        <div class="groups-list">
+            <h2>Available Discussion Groups</h2>
+            <div id="groups-container"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('create-group-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const groupName = document.getElementById('group-name').value;
+            const groupDescription = document.getElementById('group-description').value;
+
+            const groupContainer = document.getElementById('groups-container');
+            const newGroup = document.createElement('div');
+            newGroup.className = 'group';
+
+            const groupTitle = document.createElement('h3');
+            groupTitle.textContent = groupName;
+            newGroup.appendChild(groupTitle);
+
+            const groupDesc = document.createElement('p');
+            groupDesc.textContent = groupDescription;
+            newGroup.appendChild(groupDesc);
+
+            groupContainer.appendChild(newGroup);
+
+            document.getElementById('create-group-form').reset();
+        });
+    </script>
+
+</body>
+</html>
